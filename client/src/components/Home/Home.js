@@ -20,7 +20,7 @@ function Home() {
             
             <Carousel style={{width:'55%', margin:'auto', marginTop:'30px'}}
             fade={true} indicators={false}>
-            {posts.map(post=>
+            {posts && posts.map(post=>
                 <Carousel.Item>
                     <Link to={`/postDetails/${post._id}`} 
             onClick={()=>dispatch({type:"TOGGLE_LOADING_TRUE"})} >
