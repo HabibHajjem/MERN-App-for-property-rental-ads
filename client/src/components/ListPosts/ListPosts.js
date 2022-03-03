@@ -7,7 +7,7 @@ function ListPosts() {
     const posts = useSelector(state=>state.postReducer.posts)
     const filter = useSelector(state=>state.postReducer.filter)
   return <div id='listPostsBloc'>
-      {posts.filter(post=>(filter && filter.price?post.price<=filter.price:post)&&
+      {posts && posts.filter(post=>(filter && filter.price?post.price<=filter.price:post)&&
       (filter && filter.governate?filter.governate===post.governate:post)&&
       (filter && filter.city?filter.city===post.city:post)&&
       (filter && filter.maison?post.locationType==="Maison":post)&&
