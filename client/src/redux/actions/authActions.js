@@ -13,7 +13,7 @@ export const signUp = (newUser,navigate) => async(dispatch)=>{
 
 export const signIn = (userInfo,navigate) => async(dispatch) => {
     try {
-        const res = await axios.post('https://gmcmyprojectmern.herokuapp.com/signIn',userInfo)
+        const res = await axios.post('/signIn',userInfo)
         dispatch({type : "SIGN_IN", payload : res.data})
         navigate('/')
     } catch (error) {
@@ -29,7 +29,7 @@ export const current = () => async(dispatch) =>{
         }
     }
     try {
-        const res = await axios.get('/current', config)
+        const res = await axios.get('https://gmcmyprojectmern.herokuapp.com/api/current', config)
         dispatch({type : "CURRENT", payload:res.data})
         dispatch({type:"TOGGLE_LOADING_FALSE"})
     } catch (error) {
