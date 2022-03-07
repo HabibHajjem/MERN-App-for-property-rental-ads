@@ -80,7 +80,7 @@ authRoute.delete('/users/deleteUser/:id', isAuth, async(req,res) => {
     }
 })
 
-authRoute.get('/users/:id', isAuth, async(req,res)=>{
+authRoute.get('/users/:id', async(req,res)=>{
     try {
         const {id} = req.params
         const user = await userSchema.findById(id)
