@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npx nodemon server\" \"cd client && npm start\""
+    "start": "concurrently \"npx nodemon server\" \"cd client && npm start\"",
+    "heroku-postbuild":"mkdir myUploads"
   },
   "keywords": [],
   "author": "",
