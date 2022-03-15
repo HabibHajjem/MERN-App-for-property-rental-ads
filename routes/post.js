@@ -1,20 +1,24 @@
 const express = require('express')
 const upload = require('../middlewares/upload')
+const { uploader } = require('../middlewares/cloudinary')
 const postRoute = express.Router()
 const postSchema = require('../models/post')
 const userSchema = require('../models/auth')
 const { isAuth } = require('../middlewares/isAuth');
 const { addPostValidation, Validation } = require('../middlewares/register')
 
+
 //add post
 postRoute.post('/posts/addPost' , isAuth, upload.array("myImages",5),  addPostValidation, Validation,  async(req,res) => {
     try {
-        let imagesUrl=Array()
+        let imagesUrl=[]
         const {_id,contact} = req.user
         let posts=req.user.posts
-        console.log(req.files)
         if(req.files){
-            req.files.forEach(file=>imagesUrl.push(file.filename))
+            for (let file of req.files) {
+                let result = await uploader.upload(file.path)
+                imagesUrl.push(result.secure_url)
+            }
         }
         const post = new postSchema({imagesUrl,...req.body,user_id:_id,contact:contact})
         await post.save()
